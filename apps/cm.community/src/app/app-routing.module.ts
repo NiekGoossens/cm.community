@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { NxWelcomeComponent } from '../nx-welcome.component';
+import { NxWelcomeComponent } from './nx-welcome.component';
+import { ComponentFeedComponent } from './component-feed/component-feed.component';
 
 const routes: Routes = [
-  { path: '', component: NxWelcomeComponent },
+  { path: '', pathMatch:'full', component: NxWelcomeComponent },
+  { path: 'feed', pathMatch:'full', component: ComponentFeedComponent },
 ];
 
 

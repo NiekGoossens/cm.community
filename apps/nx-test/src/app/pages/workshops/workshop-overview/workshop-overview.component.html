@@ -1,0 +1,43 @@
+<div class="component ">
+  <div class="album py-5">
+    <div class="container">
+      <div class="row">
+        <div class="table ms-2">
+          <div class="col" *ngIf="isStudent === false">
+            <a class="btn btn-primary btn-sm float-right" href="add" role="button" routerLink="new/edit">New</a>
+          </div>
+        </div>
+        <div *ngFor="let workshop of workshops" class="col-md-4">
+          <div class="card mb-4 box-shadow" (click)="openWorkshop(workshop.id)">
+            <figure class="figure">
+              <img class="card-img-top Placeholder figure-img"
+                data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                alt="Placeholder" style="height: 225px; width: 100%; display: block;" src={{workshop.image}}
+                data-holder-rendered="false" aria-label="Placeholder">
+            </figure>
+
+            <div class="card-body">
+              <h4> {{workshop.name}}</h4>
+              <p class="card-text">{{workshop.description}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a routerLink="{{workshop.id}}/topic"><button type="button" class="btn btn-sm btn-outline-primary"
+                      *ngIf="localUser.followedWorkshops.includes(workshop.id) || localUser.role === 'admin' || workshop.isFree && localUser.role !== 'no'">View</button>
+                  </a>
+                  <a class="" (click)="buyWorkshop(workshop.id)"><button type="button"
+                      class="btn btn-sm btn-outline-success"
+                      *ngIf="localUser.followedWorkshops.includes(workshop.id) === false && localUser.role !== 'admin' && workshop.isFree !== true">Buy</button>
+                  </a>
+                  <a routerLink="{{workshop.id}}/edit"
+                    *ngIf="localUser.id === workshop.owner || localUser.role === 'admin'"> <button type="button"
+                      class="btn btn-sm btn-outline-danger">Edit</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

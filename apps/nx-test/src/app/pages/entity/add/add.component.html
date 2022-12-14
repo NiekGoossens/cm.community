@@ -1,0 +1,36 @@
+<div class="component container">
+    <div class="d-flex justify-content-between mt-3">
+        <h2>Add user</h2>
+
+    </div>
+    <hr>
+    <form #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit(userForm)">
+        <div class="form-group my-3">
+            <label for="firstName">firstname</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John"
+                #userName="ngModel" [(ngModel)]="user!.firstName" required>
+        </div>
+        <div class="form-group my-3">
+            <label for="lastName">Lastname</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe" #userName="ngModel"
+                [(ngModel)]="user!.lastName" required>
+        </div>
+        <div class="form-group my-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com"
+                [(ngModel)]="user!.email" required>
+        </div>
+        <div class="form-group my-3">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="123Ww!"
+                [(ngModel)]="user!.password" required>
+        </div>
+        <div class="form-group my-3">
+            <label for="role">Role</label>
+            <input type="text" class="form-control" id="role" name="role" placeholder="Student" [(ngModel)]="user!.role"
+                required>
+        </div>
+        <button type="submit" class="btn btn-success my-2 ms-2">Submit</button>
+        <a class="btn btn-secondary my-2 ms-2" routerLink="../">Cancel</a>
+    </form>
+</div>

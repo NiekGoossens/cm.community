@@ -1,0 +1,31 @@
+<div *ngIf="user" class="component">
+  <div class="row">
+
+    <div class="d-flex justify-content-between mt-3">
+      <h2>Details</h2>
+
+    </div>
+    <hr>
+    <div class="col-6"><b>Firstname</b></div>
+    <div class="col-2">{{ user.firstName }}</div>
+    <div class="col-6"><b>Lastname</b></div>
+    <div class="col-2">{{ user.lastName }}</div>
+    <div class="col-6"><b>Email</b></div>
+    <div class="col-2">{{ user.email }}</div>
+    <div class="col-6"><b>Role</b></div>
+    <div class="col-2">{{ user.role }}</div>
+    <div class="col-6"><b>Amount of Payed Workshops</b></div>
+    <div class="col-2">{{ user.amountOfPayedWorkshops }}</div>
+    <div class="col-6"><b>Followed Workshops</b></div>
+    <div class="col-2">{{ user.followedWorkshops }}</div>
+    <div class="col-6"><b>Id</b></div>
+    <div class="col-2">{{ user.id }}</div>
+
+
+
+    <div>
+      <a class="btn btn-primary btn-sm float-right  " href="#" role="button" routerLink="edit" *ngIf="canEdit">Edit</a>
+    </div>
+
+  </div>
+</div>

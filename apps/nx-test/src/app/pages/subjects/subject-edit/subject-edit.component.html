@@ -1,0 +1,85 @@
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+
+        </div>
+
+        <div class="col-md-6 border-right">
+
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between mt-3">
+                    <h2 *ngIf="!isEdit">Create subject</h2>
+                    <h2 *ngIf="isEdit">Update subject</h2>
+                </div>
+                <form #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit(userForm)"
+                    class="needs-validation">
+                    <input *ngIf="isEdit" type="hidden" id="id" name="id" [(ngModel)]="subject!.id">
+                    <div class="form-group my-3">
+                        <label for="id">Subject Id</label>
+                        <input type="text" class="form-control" id="id" name="id" placeholder="0" #id="ngModel"
+                            [(ngModel)]="subject!.id" disabled>
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="name">Subject name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Front end"
+                            #name="ngModel" [(ngModel)]="subject!.name" required minlength="2" [ngClass]="{
+                                'is-invalid': name.invalid && name.touched
+                            }">
+                        <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
+                            <div *ngIf="name.errors!['required']">
+                                Name is required
+                            </div>
+                            <div *ngIf="name.errors!['minlength']">
+                                Name must be at least 2 chars long.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group my-3">
+                        <label for="description">description</label>
+                        <input type="text" class="form-control" id="description"
+                            name="This is a subject about front end" placeholder="Vul hier je voornaam in"
+                            #description="ngModel" [(ngModel)]="subject!.description" required minlength="10" [ngClass]="{
+                                'is-invalid': description.invalid && description.touched
+                            }">
+                        <div *ngIf="description.invalid && description.touched" class="invalid-feedback">
+                            <div *ngIf="description.errors!['required']">
+                                Description is required
+                            </div>
+                            <div *ngIf="description.errors!['minlength']">
+                                Description must be at least 10 chars long.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group my-3">
+                        <label for="image">Image url</label>
+                        <input type="text" class="form-control" id="image" name="image" placeholder="https://link.com"
+                            #image="ngModel" [(ngModel)]="subject!.image" required minlength="5" [ngClass]="{
+                                'is-invalid': image.invalid && image.touched
+                            }">
+                        <div *ngIf="image.invalid && image.touched" class="invalid-feedback">
+                            <div *ngIf="image.errors!['required']">
+                                Image url is required
+                            </div>
+                            <div *ngIf="image.errors!['minlength']">
+                                Image url must be at least 5 chars long.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 text-center"><button class="btn btn-success profile-button" type="submit">Save
+                        </button>
+                        <button class="btn btn-secondary my-2 ms-2" routerLink="../../">Cancel</button>
+                        <button *ngIf="isEdit" class="btn btn-danger profile-button my-2 ms-2" type="delete"
+                            (click)="delete(subject.id)">Delete
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>

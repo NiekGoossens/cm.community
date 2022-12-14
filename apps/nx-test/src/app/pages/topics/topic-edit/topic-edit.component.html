@@ -1,0 +1,107 @@
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+
+        </div>
+
+        <div class="col-md-6 border-right">
+
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between mt-3">
+                    <h2 *ngIf="!isEdit">Create Topic</h2>
+                    <h2 *ngIf="isEdit">Update Topic</h2>
+                </div>
+                <form #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit(userForm)"
+                    class="needs-validation">
+                    <input *ngIf="isEdit" type="hidden" id="id" name="id" [(ngModel)]="topic!.id">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="id">Topic Id</label>
+                            <input type="text" class="form-control" id="id" name="id" placeholder="0" #id="ngModel"
+                                [(ngModel)]="topic!.id" disabled>
+                        </div>
+
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="name">Topic Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Javascript"
+                            #title="ngModel" [(ngModel)]="topic!.title" required minlength="3" [ngClass]="{
+                                'is-invalid': title.invalid && title.touched
+                            }">
+                        <div *ngIf="title.invalid && title.touched" class="invalid-feedback">
+                            <div *ngIf="title.errors!['required']">
+                                Title is required
+                            </div>
+                            <div *ngIf="title.errors!['minlength']">
+                                Title must be at least 3 chars long.
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="invalid-feedback">
+                        Needs a name
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="content">Content</label>
+                        <textarea type="text" class="form-control" id="content" name="content"
+                            placeholder="This is a course about angular" #content="ngModel" [(ngModel)]="topic.content"
+                            rows="10" required minlength="30" [ngClass]="{
+                            'is-invalid': content.invalid && content.touched
+                        }"></textarea>
+                        <div *ngIf="content.invalid && content.touched" class="invalid-feedback">
+                            <div *ngIf="content.errors!['required']">
+                                Content is required
+                            </div>
+                            <div *ngIf="content.errors!['minlength']">
+                                Content must be at least 30 chars long.
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="form-group my-3">
+
+                        <label for="chapter">Chapters</label>
+                        <div class="my-2" *ngFor="let chapter of topic.chapters let i = index; i + 1;">
+
+                            <div class="input-group mb-2 mr-sm-2">
+
+                                <input type="text" class="form-control" id="chapter{{[i]}}" name="chapter{{[i]}}"
+                                    placeholder="1.1 Angular" #chapter="ngModel" [(ngModel)]="topic!.chapters[i]">
+                                <div class="input-group-append ">
+                                    <div class="input-group-text bg-danger" (click)="removeChapter(i)"><i>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg>
+                                        </i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" (click)="addChapter()">Add chapter</button>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-success profile-button" type="submit">Save
+                        </button>
+                        <button class="btn btn-secondary my-2 ms-2" routerLink="../../">Cancel</button>
+                        <button *ngIf="isEdit" class="btn btn-danger profile-button my-2 ms-2" type="delete"
+                            (click)="deleteTopic()">Delete
+                        </button>
+                    </div>
+
+
+                </form>
+
+
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>

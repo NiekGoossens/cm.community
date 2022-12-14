@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
+
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'cm.community-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'cm.community';
+
 }

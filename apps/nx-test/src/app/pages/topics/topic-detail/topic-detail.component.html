@@ -1,0 +1,32 @@
+<div class="component">
+    <div class="row">
+        <div>
+            <h1>
+                <span class="badge badge-secondary">Topic</span>
+
+            </h1>
+        </div>
+        <div>
+            <h1>
+                {{topic.title}}
+            </h1>
+        </div>
+        <div>
+            <h4>
+                Hoofdstukken
+            </h4>
+            <div>
+                <ul>
+                    <li *ngFor="let chapter of topic.chapters">
+                        {{chapter}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div [innerHTML]="topic.content">
+            <p ng-bind-html>
+
+            </p>
+        </div>
+    </div>
+</div>
